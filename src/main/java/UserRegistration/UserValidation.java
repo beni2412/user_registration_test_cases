@@ -12,7 +12,16 @@ public class UserValidation {
 			return true;
 		else 
 			return false;
-		
+	}
+	
+	public static boolean lastNameValidation(String lname) {
+		Pattern pattern =Pattern.compile("^[A-Z]{1}[a-z]{2,}");
+		Matcher matcher = pattern.matcher(lname);
+		boolean matchfound = matcher.find();
+		if(matchfound) 
+			return true;
+		else 
+			return false;
 	}
 	
 	public static void main(String[] args) {
@@ -23,6 +32,17 @@ public class UserValidation {
 			System.out.println("Enter first name (Start with capital):");
 			String firstName = sc.nextLine();
 			found = firstNameValidation(firstName);
+			if(found) {
+				break;
+			}
+			else
+				System.out.println("Invalid name (Start with capital and should have min 3 charcaters");
+		}
+		for(int i=0;;) {
+			boolean found = false;
+			System.out.println("Enter last name (Start with capital):");
+			String lastName = sc.nextLine();
+			found = firstNameValidation(lastName);
 			if(found) {
 				System.out.println("Correct input");
 				break;
