@@ -44,6 +44,16 @@ public class UserValidation {
 			return false;
 	}
 	
+	public static boolean passwordValidation(String password) {
+		Pattern pattern =Pattern.compile("^[a-zA-z0-9]{8,}");
+		Matcher matcher = pattern.matcher(password);
+		boolean matchfound = matcher.find();
+		if(matchfound) 
+			return true;
+		else 
+			return false;
+	}
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to User Registration");
@@ -88,11 +98,23 @@ public class UserValidation {
 			String phoneNumber = sc.nextLine();
 			found = phoneNumberValidation(phoneNumber);
 			if(found) {
+				break;
+			}
+			else
+				System.out.println("Invalid phone number");
+		}
+		
+		for(int i=0;;) {
+			boolean found = false;
+			System.out.println("Enter password:");
+			String passwrd = sc.nextLine();
+			found = passwordValidation(passwrd);
+			if(found) {
 				System.out.println("Correct input");
 				break;
 			}
 			else
-				System.out.println("Invalid email");
+				System.out.println("Invalid password");
 		}
 	}
 }
