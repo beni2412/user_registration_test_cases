@@ -1,5 +1,6 @@
 package UserRegistration;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runners.Parameterized;
 import org.junit.runner.RunWith;
 import java.util.Arrays;
@@ -45,7 +46,15 @@ public class ParameterisedTesting {
 	@Test
 	public void testEmail() {
 	UserValidation user = new UserValidation();
-	boolean result = user.emailIDValidation(this.emailSample);
+	boolean result = false;
+	try {
+		ExpectedException exceptionrule = ExpectedException.none();
+		exceptionrule.expect(UserValidationException.class);
+		result = user.emailIDValidation(this.emailSample);
+	} catch (UserValidationException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	Assert.assertEquals(this.expectedResult, result);
 	}
 }

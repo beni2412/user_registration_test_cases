@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class UserValidation {
 
-	public static boolean firstNameValidation(String fname) {
+	public static boolean firstNameValidation(String fname) throws UserValidationException {
 		Pattern pattern =Pattern.compile("^[A-Z]{1}[a-z]{2,}");
 		Matcher matcher = pattern.matcher(fname);
 		boolean matchfound = matcher.find();
@@ -14,7 +14,7 @@ public class UserValidation {
 			return false;
 	}
 	
-	public static boolean lastNameValidation(String lname) {
+	public static boolean lastNameValidation(String lname) throws UserValidationException{
 		Pattern pattern =Pattern.compile("^[A-Z]{1}[a-z]{2,}");
 		Matcher matcher = pattern.matcher(lname);
 		boolean matchfound = matcher.find();
@@ -24,7 +24,7 @@ public class UserValidation {
 			return false;
 	}
 	
-	public static boolean emailIDValidation(String emailid) {
+	public static boolean emailIDValidation(String emailid) throws UserValidationException {
 		Pattern pattern =Pattern.compile("^abc([.+_-]{0,1}[0-9a-z]+)?@[a-z0-9]+(\\.[a-z]{2,}){1,2}$");
 		Matcher matcher = pattern.matcher(emailid);
 		boolean matchfound = matcher.find();
@@ -34,7 +34,7 @@ public class UserValidation {
 			return false;
 	}
 	
-	public static boolean phoneNumberValidation(String phoneNum) {
+	public static boolean phoneNumberValidation(String phoneNum) throws UserValidationException {
 		Pattern pattern =Pattern.compile("^[1-9]{1}[0-9]{1} [1-9]{1}[0-9]{9}");
 		Matcher matcher = pattern.matcher(phoneNum);
 		boolean matchfound = matcher.find();
@@ -44,7 +44,7 @@ public class UserValidation {
 			return false;
 	}
 	
-	public static boolean passwordValidation(String password) {
+	public static boolean passwordValidation(String password) throws UserValidationException{
 		Pattern pattern =Pattern.compile("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%]).{8,}");
 		Matcher matcher = pattern.matcher(password);
 		boolean matchfound = matcher.find();
@@ -54,7 +54,7 @@ public class UserValidation {
 			return false;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UserValidationException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to User Registration");
 		for(int i=0;;) {
