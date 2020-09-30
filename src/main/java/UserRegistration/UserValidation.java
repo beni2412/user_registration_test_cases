@@ -45,7 +45,7 @@ public class UserValidation {
 	}
 	
 	public static boolean passwordValidation(String password) {
-		Pattern pattern =Pattern.compile("(?=.*[A-Z])(?=.*\\d)([a-zA-Z0-9]){8,}");
+		Pattern pattern =Pattern.compile("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%]).{8,}");
 		Matcher matcher = pattern.matcher(password);
 		boolean matchfound = matcher.find();
 		if(matchfound) 
