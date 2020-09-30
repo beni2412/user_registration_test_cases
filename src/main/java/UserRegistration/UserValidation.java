@@ -25,8 +25,18 @@ public class UserValidation {
 	}
 	
 	public static boolean emailIDValidation(String emailid) {
-		Pattern pattern =Pattern.compile("^abc([.+_-]{0,1}[0-9a-z]+)?@[a-z0-9]+(\\\\.[a-z]{2,}){1,2}");
+		Pattern pattern =Pattern.compile("^abc([.+_-]{0,1}[0-9a-z]+)?@[a-z0-9]+(\\.[a-z]{2,}){1,2}");
 		Matcher matcher = pattern.matcher(emailid);
+		boolean matchfound = matcher.find();
+		if(matchfound) 
+			return true;
+		else 
+			return false;
+	}
+	
+	public static boolean phoneNumberValidation(String phoneNum) {
+		Pattern pattern =Pattern.compile("^[1-9]{1}[0-9]{1} [1-9]{1}[0-9]{9}");
+		Matcher matcher = pattern.matcher(phoneNum);
 		boolean matchfound = matcher.find();
 		if(matchfound) 
 			return true;
@@ -52,7 +62,7 @@ public class UserValidation {
 			boolean found = false;
 			System.out.println("Enter last name (Start with capital):");
 			String lastName = sc.nextLine();
-			found = firstNameValidation(lastName);
+			found = lastNameValidation(lastName);
 			if(found) {
 				break;
 			}
@@ -64,7 +74,19 @@ public class UserValidation {
 			boolean found = false;
 			System.out.println("Enter email ID:");
 			String email = sc.nextLine();
-			found = firstNameValidation(email);
+			found = emailIDValidation(email);
+			if(found) {
+				break;
+			}
+			else
+				System.out.println("Invalid email");
+		}
+		
+		for(int i=0;;) {
+			boolean found = false;
+			System.out.println("Enter phone number:");
+			String phoneNumber = sc.nextLine();
+			found = phoneNumberValidation(phoneNumber);
 			if(found) {
 				System.out.println("Correct input");
 				break;
