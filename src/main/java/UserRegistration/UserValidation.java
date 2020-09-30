@@ -24,6 +24,16 @@ public class UserValidation {
 			return false;
 	}
 	
+	public static boolean emailIDValidation(String emailid) {
+		Pattern pattern =Pattern.compile("^abc([.+_-]{0,1}[0-9a-z]+)?@[a-z0-9]+(\\\\.[a-z]{2,}){1,2}");
+		Matcher matcher = pattern.matcher(emailid);
+		boolean matchfound = matcher.find();
+		if(matchfound) 
+			return true;
+		else 
+			return false;
+	}
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to User Registration");
@@ -44,12 +54,23 @@ public class UserValidation {
 			String lastName = sc.nextLine();
 			found = firstNameValidation(lastName);
 			if(found) {
-				System.out.println("Correct input");
 				break;
 			}
 			else
 				System.out.println("Invalid name (Start with capital and should have min 3 charcaters");
 		}
-			
+		
+		for(int i=0;;) {
+			boolean found = false;
+			System.out.println("Enter email ID:");
+			String email = sc.nextLine();
+			found = firstNameValidation(email);
+			if(found) {
+				System.out.println("Correct input");
+				break;
+			}
+			else
+				System.out.println("Invalid email");
+		}
 	}
 }
