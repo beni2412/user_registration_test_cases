@@ -8,25 +8,29 @@ public class UserValidationTest {
 		    
 		 @Test
 		    public void givenFirstName_Proper_ReturnTrue() {
-		        UserValidation user = new UserValidation();
-		        boolean result =false;
+		        boolean found =false;
 		        try {
 		        	ExpectedException exceptionRule = ExpectedException.none();
 					exceptionRule.expect(UserValidationException.class);
-					result = user.firstNameValidation("Hardaman");
+					
+		        	Validator validateFirstName = (n) -> n.matches("^[A-Z]{1}[a-z]{2,}");
+					found = validateFirstName.validate("Hardaman");
+		        	
 				} catch (UserValidationException e) {
 					e.printStackTrace();
 				}
-		        Assert.assertTrue(result);
+		        Assert.assertTrue(found);
 		    }
 		 @Test
 		    public void givenFirstName_Improper_ReturnFalse() {
-			 UserValidation user = new UserValidation();
 			 boolean result =false;
 		        try {
 		        	ExpectedException exceptionRule = ExpectedException.none();
 					exceptionRule.expect(UserValidationException.class);
-					result = user.firstNameValidation("hardaman");
+
+					Validator validateFirstName = (n) -> n.matches("^[A-Z]{1}[a-z]{2,}");
+					result = validateFirstName.validate("hardaman");
+					
 				} catch (UserValidationException e) {
 					e.printStackTrace();
 				}
@@ -34,12 +38,14 @@ public class UserValidationTest {
 		    }
 		 @Test
 		    public void givenLastName_Proper_ReturnTrue() {
-			 UserValidation user = new UserValidation();
 			 boolean result =false;
 		        try {
 		        	ExpectedException exceptionRule = ExpectedException.none();
 					exceptionRule.expect(UserValidationException.class);
-					result = user.lastNameValidation("Benipal");
+
+					Validator validateLastName = (n) -> n.matches("^[A-Z]{1}[a-z]{2,}");
+					result = validateLastName.validate("Benipal");
+					
 				} catch (UserValidationException e) {
 					e.printStackTrace();
 				}
@@ -47,12 +53,14 @@ public class UserValidationTest {
 		    }
 		 @Test
 		    public void givenLastName_Improper_ReturnFalse() {
-			 UserValidation user = new UserValidation();
 			 boolean result =false;
 		        try {
 		        	ExpectedException exceptionRule = ExpectedException.none();
 					exceptionRule.expect(UserValidationException.class);
-					result = user.lastNameValidation("benipal");
+					
+					Validator validateLastName = (n) -> n.matches("^[A-Z]{1}[a-z]{2,}");
+					result = validateLastName.validate("benipal");
+					
 				} catch (UserValidationException e) {
 					e.printStackTrace();
 				}
@@ -60,12 +68,14 @@ public class UserValidationTest {
 		    }
 		 @Test
 		    public void givenEmail_Proper_ReturnTruee() {
-			 UserValidation user = new UserValidation();
-			 boolean result =false;
+			boolean result =false;
 		        try {
 		        	ExpectedException exceptionRule = ExpectedException.none();
 					exceptionRule.expect(UserValidationException.class);
-					result = user.emailIDValidation("abc@gmail.com");
+					
+					Validator validateEmail = (n) -> n.matches("^abc([.+_-]{0,1}[0-9a-z]+)?@[a-z0-9]+(\\.[a-z]{2,}){1,2}$");
+					result = validateEmail.validate("abc@gmail.com");
+					
 				} catch (UserValidationException e) {
 					e.printStackTrace();
 				}
@@ -73,12 +83,14 @@ public class UserValidationTest {
 		    }
 		 @Test
 		    public void givenEmail_Improper_ReturnFalse() {
-			 UserValidation user = new UserValidation();
 			 boolean result =false;
 		        try {
 		        	ExpectedException exceptionRule = ExpectedException.none();
 					exceptionRule.expect(UserValidationException.class);
-					result = user.emailIDValidation("abcdef");
+					
+					Validator validateEmail = (n) -> n.matches("^abc([.+_-]{0,1}[0-9a-z]+)?@[a-z0-9]+(\\.[a-z]{2,}){1,2}$");
+					result = validateEmail.validate("abcdef");
+	
 				} catch (UserValidationException e) {
 					e.printStackTrace();
 				}
@@ -86,13 +98,15 @@ public class UserValidationTest {
 		    }
 		 @Test
 		    public void givenPassword_Proper_ReturnTrue() {
-			 UserValidation user = new UserValidation();
 			 boolean result =false;
 			 
 		        try {
 		        	ExpectedException exceptionRule = ExpectedException.none();
 					exceptionRule.expect(UserValidationException.class);
-					result = user.passwordValidation("Abcde24@");
+					
+					Validator validatePassword = (n) -> n.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%]).{8,}");
+					result = validatePassword.validate("Abcde24@");
+					
 				} catch (UserValidationException e) {
 					e.printStackTrace();
 				}
@@ -100,13 +114,15 @@ public class UserValidationTest {
 		    }
 		 @Test
 		    public void givenPassword_Improper_ReturnFalse() {
-			 UserValidation user = new UserValidation();
 			 boolean result =false;
 			 
 		        try {
 		        	ExpectedException exceptionRule = ExpectedException.none();
 					exceptionRule.expect(UserValidationException.class);
-					result = user.passwordValidation("helloworld");
+					
+					Validator validatePassword = (n) -> n.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%]).{8,}");
+					result = validatePassword.validate("helloworld");
+					
 				} catch (UserValidationException e) {
 					e.printStackTrace();
 				}
@@ -114,12 +130,14 @@ public class UserValidationTest {
 		    }
 		 @Test
 		    public void givenMobileNo_Proper_ReturnTrue() {
-			 UserValidation user = new UserValidation();
 			 boolean result =false;
 		        try {
 		        	ExpectedException exceptionRule = ExpectedException.none();
 					exceptionRule.expect(UserValidationException.class);
-					result = user.phoneNumberValidation("91 1234567895");
+					
+					Validator validatePhone = (n) -> n.matches("^[1-9]{1}[0-9]{1} [1-9]{1}[0-9]{9}");
+					result = validatePhone.validate("91 1234567895");
+					
 				} catch (UserValidationException e) {
 					e.printStackTrace();
 				}
@@ -127,12 +145,14 @@ public class UserValidationTest {
 		    }
 		 @Test
 		    public void givenMobileNo_Improper_ReturnFalse() {
-			 UserValidation user = new UserValidation();
 			 boolean result =false;
 		        try {
 		        	ExpectedException exceptionRule = ExpectedException.none();
 					exceptionRule.expect(UserValidationException.class);
-					result = user.phoneNumberValidation("12345");
+					
+					Validator validatePhone = (n) -> n.matches("^[1-9]{1}[0-9]{1} [1-9]{1}[0-9]{9}");
+					result = validatePhone.validate("12345");
+					
 				} catch (UserValidationException e) {
 					e.printStackTrace();
 				}

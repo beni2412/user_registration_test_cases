@@ -1,4 +1,4 @@
-package UserRegistration;
+/*package UserRegistration;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runners.Parameterized;
@@ -57,4 +57,4 @@ public class ParameterisedTesting {
 	}
 	Assert.assertEquals(this.expectedResult, result);
 	}
-}
+}*/
